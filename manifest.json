@@ -1,0 +1,29 @@
+{
+  "name": "Толковый словарь",
+  "description": "Определение слова со страницы",
+  "version": "1.0.0",
+
+  "manifest_version": 2,
+
+  "content_scripts": [
+    {
+      "matches": [ "http://*/*" ],
+      "js": [ "scripts/content.js" ]
+    }
+  ],
+
+  "background": {
+    "persistent": false,
+    "scripts": ["scripts/background.js"]
+  },
+
+  "browser_action": {
+    "default_icon": {
+      "16": "/images/dict16.png",
+      "48": "/images/dict48.png",
+      "128": "/images/dict128.png"
+    },
+    "default_title": "Найти определение",
+    "default_popup": "popup.html"
+  }
+}

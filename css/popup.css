@@ -1,0 +1,15 @@
+.word-search__input:invalid
+{
+    outline-color: #ff7c76;
+}
+
+.word-search__error
+{
+    display: none;
+    color: #f00;
+}
+
+.results
+{
+    display: none;
+}
