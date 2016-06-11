@@ -5,6 +5,9 @@
   "engines": {
     "node": "4.4.5"
   },
+  "scripts": {
+    "build-js": "browserify scripts/background.js -o scripts/bundle.js"
+  },
   "dependencies": {
     "cheerio": "^0.20.0",
     "needle": "^1.0.0"

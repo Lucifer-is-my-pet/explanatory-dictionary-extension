@@ -5,22 +5,30 @@
     <title>Popup</title>
     <link href="css/popup.css" rel="stylesheet" type="text/css">
 </head>
-    <body>
-        <div class="word-search">
-            <form class="word-search__form">
-                <label class="word-searh__label">Введите слово
-                    <input class="word-search__input" pattern="^[а-я]+$">
-                </label>
-                <span class="word-search__error"></span>
-                <button class="word-search__button" type="submit">Найти</button>
-            </form>
-        </div>
-        <div class="results">
-            <section class="results__gramota">
-            </section>
-            <section class="results__wiktionary">
-            </section>
-        </div>
-        <script type="text/javascript" src="scripts/popup.js"></script>
-    </body>
+<body>
+<div class="word-search">
+    <form class="word-search__form">
+        <label class="word-search__label">Введите слово
+            <input class="word-search__input" pattern="^[а-я]+$">
+        </label>
+        <button class="word-search__button" type="submit">Найти</button>
+    </form>
+</div>
+<section class="messages">
+    <span class="messages__no messages__no_hidden">Ничего не найдено :(</span>
+    <span class="messages__error messages__error_hidden">Произошла ошибка, попробуйсте снова</span>
+</section>
+<div class="results results_hidden">
+    <section class="results__gramota">
+        <span class="results__section-name">Грамота</span>
+    </section>
+    <section class="results__wiktionary">
+        <span class="results__section-name">Викисловарь</span>
+    </section>
+</div>
+<a class="bug-report" title="Сообщить об ошибке или некорректной работе" href="#">
+    <!--TODO тут будет картинощка с воскл знаком или ещё чем-то таким-->
+</a>
+<script type="text/javascript" src="scripts/popup.js"></script>
+</body>
 </html>
