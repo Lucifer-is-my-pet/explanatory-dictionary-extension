@@ -1,15 +1,45 @@
+body
+{
+    width: 300px;
+}
+
 .word-search__input:invalid
 {
     outline-color: #ff7c76;
 }
 
-.word-search__error
+.word-search__button-and-report
 {
-    display: none;
-    color: #f00;
+    display: flex;
+    justify-content: space-between;
 }
 
-.results
+.messages__error
+{
+    color: #ff5b54;
+}
+
+.results__section-name
+{
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.results__title
+{
+    text-decoration: underline;
+}
+
+.accent
+{
+    color: #DC143C;
+}
+
+.results_hidden,
+.messages__no_hidden,
+.messages__error_hidden,
+.results__gramota_hidden,
+.results__wiktionary_hidden
 {
     display: none;
 }
