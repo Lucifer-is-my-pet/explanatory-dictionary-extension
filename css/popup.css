@@ -14,6 +14,14 @@ body
     justify-content: space-between;
 }
 
+.bug-report__img
+{
+    width: 16px;
+    opacity: 0.5;
+    filter: grayscale(1);
+    -webkit-filter: grayscale(1);
+}
+
 .messages__error
 {
     color: #ff5b54;

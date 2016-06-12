@@ -24,13 +24,13 @@ function createDefinition(definition, section) {
 
 function setInput(text) {
     if (text) {
-        document.querySelector('.word-search__input').value = text.selection;
+        document.querySelector('.word-search__input').value = text.selection.toLowerCase();
         document.querySelector('.word-search__input').focus();
+        document.querySelector('.word-search__button').dispatchEvent(new Event("click", {bubbles: true, cancelable: true}));
     }
 }
 
 function insertResults(arrayOfDicts) {
-    // console.log(arrayOfDicts);
     let gramota = arrayOfDicts[0].site === 'Грамота' ? arrayOfDicts[0] : arrayOfDicts[1];
     let wiktionary = arrayOfDicts[0].site === 'Викисловарь' ? arrayOfDicts[0] : arrayOfDicts[1];
     let gramotaSection = document.querySelector('.' + GRAMOTA);
@@ -109,7 +109,7 @@ document.querySelector('.word-search__button').addEventListener('click', functio
     if (input.validity.valid && input.value.length) {
         chrome.runtime.sendMessage({text: input.value}, onResponse);
     } else {
-        event.target.parentElement.reset();
+        event.target.parentElement.parentElement.reset();
     }
 });
 
