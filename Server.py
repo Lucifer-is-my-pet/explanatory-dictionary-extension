@@ -6,20 +6,13 @@ def normalize():
     try:
         morph = pymorphy.MorphAnalyzer()
         parsed = morph.parse(request.query.word)
-        parse_result = str(parsed[0]).replace('Parse(', '')
+        parse_result = parsed[0]
 
-        if (parse_result.find('Surn') + 1 or parse_result.find('Name') + 1) and len(parsed) > 1:
-            parse_result = str(parsed[1]).replace('Parse(', '')
+        if (str(parse_result.tag).find('Surn') + 1 or str(parse_result.tag).find('Name') + 1) and len(parsed) > 1:
+            parse_result = parsed[1]
 
-        result_list = parse_result.split(', ')
-        normal_form = str()
-        tag = str()
-
-        for param in result_list:
-            if param.find('tag') + 1:
-                tag = param.split('\'')[1]
-            elif param.find('normal') + 1:
-                normal_form = param.split('\'')[1]
+        tag = str(parse_result.tag)
+        normal_form = str(parse_result.normal_form)
 
         if tag.find('LATN') + 1 or tag.find('NUMB') + 1 or tag.find('UNKN') + 1:
             response.status = 418
