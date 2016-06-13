@@ -5,14 +5,11 @@ const needle = require('needle'),
 
 chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
-        // let tex = '-';
         if (request.text) {
-            // tex = request.text.length.toString();
-            // chrome.browserAction.setBadgeText({text: tex});
 
             needle.get('http://luciferismypet.pythonanywhere.com/?word=' + request.text,
                 function (error, response) {
-                    if (error || response.statusCode === 418) { //что-то пошло не так
+                    if (error || response.statusCode === 418) {
                         sendResponse({status: -1});
                     } else {
                         const urlArray = [
@@ -84,7 +81,7 @@ function grabTheInfo(string, host) {
     });
 
     if (site === 'Грамота') {
-        $('h2').each(function (i, elem) {
+        $('h2').each(function () {
             if ($(this).text() !== 'Искомое слово отсутствует' &&
                 $(this).next('div').text() !== 'искомое слово отсутствует' &&
                 $(this).text() !== 'Орфографический словарь') {
@@ -100,7 +97,12 @@ function grabTheInfo(string, host) {
             }
         });
     } else {
-        $('h4').each(function (i, elem) {
+        $('b').each(function () {
+            let repl = $(this).html();
+            $(this).replaceWith(repl);
+        });
+
+        $('h4').each(function () {
             if ($(this).text() === 'Значение') {
                 let h1 = $(this).prevAll('h1');
                 if (h1.eq(0).text() === 'Русский') {
@@ -111,7 +113,6 @@ function grabTheInfo(string, host) {
                             if ($(child).hasClass('example-absent-block')) {
                                 $(child).replaceWith('');
                             }
-                            $()
                         });
                     });
 
@@ -129,6 +130,7 @@ function grabTheInfo(string, host) {
         result[key] = result[key].replace('<li class="mw-empty-li"></li>\n', '');
         result[key] = result[key].replace(/background-color:#CCFFFF;/g, '');
         result[key] = result[key].replace(/background-color:#EDF0FF;?/g, '');
+        result[key] = result[key].replace(/, см\. Список литературы/g, '');
     });
 
     if (Object.keys(result).length) {
